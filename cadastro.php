@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $novoNome = uniqid() . "." . $extensao;
 
-        $caminho = "upload/foto_perfil/" . $novoNome;
+        $caminho = "uploads/foto_usuarios/" . $novoNome;
 
         //verificar se está salvo
         if (move_uploaded_file($tmpFoto, $caminho)) {
