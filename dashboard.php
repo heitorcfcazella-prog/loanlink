@@ -50,7 +50,7 @@ if (!isset($_SESSION['id_usuario'])) {
   
 
   //retorna os itens
-  $query_itens = "SELECT nome, categoria, descricao, status
+  $query_itens = "SELECT nome, categoria, descricao, status, foto_item
                   FROM itens
                   WHERE id_proprietario = ?";
 
@@ -156,6 +156,9 @@ if (!isset($_SESSION['id_usuario'])) {
     font-weight: bold;
     cursor: pointer;
   }
+  img {
+    height: 200px;
+  }
   </style>
   <title>DashBoard</title>
 </head>
@@ -181,6 +184,8 @@ if (!isset($_SESSION['id_usuario'])) {
     <?php foreach ($meus_itens as $item) { ?>
       <div>
         <h3><?= htmlspecialchars($item['nome']) ?></h3>
+
+        <img src="<?= htmlspecialchars($item['foto_item']) ?>" alt="Foto Não Disponível">
 
         <p>Categoria: <?= htmlspecialchars($item['categoria']) ?></p>
 
