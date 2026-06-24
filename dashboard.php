@@ -1,8 +1,6 @@
 <?php
-session_start();
+include("header.php");
 include("db.php");
-
-
 
 if (!isset($_SESSION['id_usuario'])) {
   header("Location: login.php");
@@ -141,7 +139,6 @@ if (!isset($_SESSION['id_usuario'])) {
     session_destroy(); // deslogar
     header("Location: login.php");
   }
-  include("header.php");
 }
 
 ?>

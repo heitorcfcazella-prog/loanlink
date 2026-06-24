@@ -1,6 +1,6 @@
 <?php
-session_start();
 include("db.php");
+include("header.php");
 if (isset($_SESSION['id_usuario'])) {
   header("Location: dashboard.php");
   exit;
@@ -48,7 +48,7 @@ if (isset($_SESSION['id_usuario'])) {
   }
 }
 
-include("header.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
