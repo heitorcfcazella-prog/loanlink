@@ -57,7 +57,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
         $novoNome = uniqid() . "." . $extensao;
 
-        $caminho = "uploads/foto_usuarios/" . $novoNome;
+        $caminho = "uploads/foto_itens/" . $novoNome;
 
         if (move_uploaded_file($tmpFoto, $caminho)) {
           $upload_stmt = "INSERT INTO itens (nome, categoria, descricao, id_proprietario, foto_item)
@@ -78,7 +78,7 @@ if (!isset($_SESSION['id_usuario'])) {
     }
   }
 }
-include("header.html");
+include("header.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

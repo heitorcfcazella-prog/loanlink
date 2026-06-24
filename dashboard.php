@@ -1,13 +1,13 @@
 <?php
-include("db.php");
 session_start();
+include("db.php");
+
 
 
 if (!isset($_SESSION['id_usuario'])) {
-    header("Location: login.php");
-    exit;
+  header("Location: login.php");
+  exit;
 } else {
-  include("header.html");
   $nome = $_SESSION['nome'];
   $id_usuario = $_SESSION['id_usuario'];
 
@@ -33,7 +33,7 @@ if (!isset($_SESSION['id_usuario'])) {
             WHERE id_proprietario = ?
             AND status = 'pendente') AS pendentes
         ";
-        //AS total_itens atribui um nome a esse resultado(tipo uma variavel)
+  //AS total_itens atribui um nome a esse resultado(tipo uma variavel)
   $stmt = $conn->prepare($query);
   $stmt->bind_param("iiii", $id_usuario, $id_usuario, $id_usuario, $id_usuario);
   $stmt->execute();
@@ -47,7 +47,7 @@ if (!isset($_SESSION['id_usuario'])) {
   $emprestados_por_mim = $dados['emprestados_por_mim'];
   $emprestados_para_mim = $dados['emprestados_para_mim'];
   $pendentes = $dados['pendentes'];
-  
+
 
   //retorna os itens
   $query_itens = "SELECT nome, categoria, descricao, status, foto_item
@@ -62,8 +62,8 @@ if (!isset($_SESSION['id_usuario'])) {
 
   $meus_itens = [];
 
-  while($item = $resultado_itens->fetch_assoc()) {
-      $meus_itens[] = $item;
+  while ($item = $resultado_itens->fetch_assoc()) {
+    $meus_itens[] = $item;
   }
 
   //query emprestados por mim
@@ -84,8 +84,8 @@ if (!isset($_SESSION['id_usuario'])) {
 
   $emprestados_por_mim_itens = [];
 
-  while($emprestimo = $resultado->fetch_assoc()) {
-      $emprestados_por_mim_itens[] = $emprestimo;
+  while ($emprestimo = $resultado->fetch_assoc()) {
+    $emprestados_por_mim_itens[] = $emprestimo;
   }
 
   //query emprestados para mim
@@ -106,8 +106,8 @@ if (!isset($_SESSION['id_usuario'])) {
 
   $emprestados_para_mim_itens = [];
 
-  while($emprestado = $resultado->fetch_assoc()) {
-      $emprestados_para_mim_itens[] = $emprestado;
+  while ($emprestado = $resultado->fetch_assoc()) {
+    $emprestados_para_mim_itens[] = $emprestado;
   }
 
   //query itens pendentes
@@ -133,35 +133,40 @@ if (!isset($_SESSION['id_usuario'])) {
 
   $pendentes_itens = [];
 
-  while($pendente = $resultado->fetch_assoc()) {
-      $pendentes_itens[] = $pendente;
+  while ($pendente = $resultado->fetch_assoc()) {
+    $pendentes_itens[] = $pendente;
   }
 
   if (isset($_POST["logout"])) {
     session_destroy(); // deslogar
     header("Location: login.php");
   }
+  include("header.php");
 }
 
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-  .titulo-detalhes {
-    font-size: 1.5rem; /* tamanho parecido com h2 */
-    font-weight: bold;
-    cursor: pointer;
-  }
-  img {
-    height: 200px;
-  }
+    .titulo-detalhes {
+      font-size: 1.5rem;
+      /* tamanho parecido com h2 */
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    img {
+      height: 200px;
+    }
   </style>
   <title>DashBoard</title>
 </head>
+
 <body>
   <h1>Olá <?= $nome ?></h1>
   <p>Seu id é <?= $id_usuario ?></p>
@@ -198,7 +203,7 @@ if (!isset($_SESSION['id_usuario'])) {
     <?php } ?>
   </details>
 
-    
+
   <details id="emprestados_por_mim">
     <summary class="titulo-detalhes">Emprestados por mim: </summary>
     <?php foreach ($emprestados_por_mim_itens as $emprestimo) { ?>
@@ -226,7 +231,7 @@ if (!isset($_SESSION['id_usuario'])) {
       </div>
     <?php } ?>
   </details>
-  
+
   <details id="pendentes">
     <summary class="titulo-detalhes">Pendentes</summary>
     <?php foreach ($pendentes_itens as $pendente) { ?>
@@ -238,28 +243,29 @@ if (!isset($_SESSION['id_usuario'])) {
         <p>Data de solicitação: <?= htmlspecialchars($pendente['data_solicitacao']) ?></p>
 
         <form action="solicitacao.php" method="post">
-            <input type="hidden" name="id_emprestimo"
-                  value="<?= $pendente['id_emprestimo'] ?>">
+          <input type="hidden" name="id_emprestimo"
+            value="<?= $pendente['id_emprestimo'] ?>">
 
-            <button type="submit" name="acao" value="aprovar">
-                Aprovar
-            </button>
+          <button type="submit" name="acao" value="aprovar">
+            Aprovar
+          </button>
 
-            <button type="submit" name="acao" value="recusar">
-                Recusar
-            </button>
+          <button type="submit" name="acao" value="recusar">
+            Recusar
+          </button>
         </form>
         <hr>
       </div>
     <?php } ?>
   </details>
 
-  
+
   <form action="dashboard.php" method="post">
     <input type="submit" value="Deslogar" name="logout">
   </form>
 </body>
+
 </html>
 <?php
-  include("footer.html");
+include("footer.html");
 ?>

@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 }
-include("header.html");
+include("header.php");
 ?>
 
 <!DOCTYPE html>
