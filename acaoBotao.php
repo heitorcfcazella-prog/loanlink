@@ -15,5 +15,19 @@ if (isset($_POST['postar'])) {
   header("Location: dashboard.php");
 }
 
+if(isset($_POST['deletar'])){
+  $id_item = $_POST['id_item'];
+
+  $query = "DELETE FROM itens
+            WHERE id_item = ?";
+
+  $stmt = $conn->prepare($query);
+  $stmt->bind_param("i", $id_item);
+  $stmt->execute();
+  $stmt->close();
+
+  header("Location: dashboard.php");
+}
+
 
 ?>
