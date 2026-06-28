@@ -48,7 +48,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
 
   //retorna os itens
-  $query_itens = "SELECT nome, categoria, descricao, status, foto_item
+  $query_itens = "SELECT id_item, nome, categoria, descricao, status, foto_item
                   FROM itens
                   WHERE id_proprietario = ?";
 
@@ -195,6 +195,12 @@ if (!isset($_SESSION['id_usuario'])) {
 
         <p>Status: <?= htmlspecialchars($item['status']) ?></p>
 
+        <form action="acaoBotao.php" method="post">
+          <input type="hidden" name="id_item" value="<?= $item['id_item'] ?>"> <!--valor invisivel para o 'id_item' ser acessado-->
+          <button type="submit" name="postar">Postar Item</button>
+          <button type="submit" name="editar">Editar Item</button>
+          <button type="submit" name="deletar">Deletar Item</button>
+        </form>
         <hr>
       </div>
     <?php } ?>

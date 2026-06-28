@@ -9,8 +9,6 @@ if (!isset($_SESSION['id_usuario'])) {
   $nome = $_SESSION['nome'];
   $id_usuario = $_SESSION['id_usuario'];
 
-  //manter em itens para teste
-  //mudar para tabela postagem depois de mudar o dashboard.php para ter esse botão e lógica
 $query = "SELECT
             u.id_usuario AS id_dono,
             u.nome AS nome_dono,
@@ -19,12 +17,19 @@ $query = "SELECT
             i.nome AS nome_item,
             i.categoria,
             i.descricao,
-            i.foto_item
-          FROM itens i
+            i.foto_item,
+            p.id_postagem,
+            p.data_postagem
+          FROM postagens p
+          JOIN itens i ON p.id_item = i.id_item
           JOIN usuarios u ON u.id_usuario = i.id_proprietario
           WHERE i.id_proprietario != ?
-          ORDER BY i.id_item DESC
+          AND p.ativo = 1
+          ORDER BY p.data_postagem DESC
           LIMIT 10";
+
+          //p é do postagens, só puxa o que está ativo e pega pelos mais novos primeiro
+          //adicionar algoritmo depois (sistema de likes)
 
   $stmt = $conn->prepare($query);
   $stmt->bind_param("i", $id_usuario);
