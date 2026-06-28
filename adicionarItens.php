@@ -1,5 +1,4 @@
 <?php
-include("db.php");
 include("header.php");
 
 if (!isset($_SESSION['id_usuario'])) {
@@ -78,7 +77,6 @@ if (!isset($_SESSION['id_usuario'])) {
     }
   }
 }
-include("header.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
