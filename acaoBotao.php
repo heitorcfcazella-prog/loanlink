@@ -29,5 +29,10 @@ if(isset($_POST['deletar'])){
   header("Location: dashboard.php");
 }
 
+if (isset($_POST['editar'])) {
+  $id_item = $_POST['id_item'];
+  header("Location: editarItem.php?id_item=" . $id_item);
+}
+
 
 ?>
