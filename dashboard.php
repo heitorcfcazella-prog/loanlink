@@ -20,11 +20,13 @@ if (!isset($_SESSION['id_usuario'])) {
 
             (SELECT COUNT(*)
             FROM emprestimos
-            WHERE id_proprietario = ?) AS emprestados_por_mim,
+            WHERE id_proprietario = ?
+            AND status = 'emprestado') AS emprestados_por_mim,
 
             (SELECT COUNT(*)
             FROM emprestimos
-            WHERE id_emprestado = ?) AS emprestados_para_mim,
+            WHERE id_emprestado = ?
+            AND status = 'emprestado') AS emprestados_para_mim,
 
             (SELECT COUNT(*)
             FROM emprestimos
