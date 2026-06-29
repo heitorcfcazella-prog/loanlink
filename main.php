@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_usuario'])) {
   $nome = $_SESSION['nome'];
   $id_usuario = $_SESSION['id_usuario'];
 
-$query = "SELECT
+  $query = "SELECT
             u.id_usuario AS id_dono,
             u.nome AS nome_dono,
             i.id_proprietario,
@@ -28,8 +28,8 @@ $query = "SELECT
           ORDER BY p.data_postagem DESC
           LIMIT 10";
 
-          //p é do postagens, só puxa o que está ativo e pega pelos mais novos primeiro
-          //adicionar algoritmo depois (sistema de likes)
+  //p é do postagens, só puxa o que está ativo e pega pelos mais novos primeiro
+  //adicionar algoritmo depois (sistema de likes)
 
   $stmt = $conn->prepare($query);
   $stmt->bind_param("i", $id_usuario);
@@ -56,16 +56,19 @@ $query = "SELECT
 <body>
   <?php foreach ($postagens as $postagem) { ?>
     <div>
+
       <h2><?= htmlspecialchars($postagem['nome_item']) ?></h2>
       <p><b>Dono do item: </b><?= htmlspecialchars($postagem['nome_dono']) ?></p>
       <img src="<?= htmlspecialchars($postagem['foto_item']) ?>" alt="Foto Não Disponível" style="height: 200px;">
       <p><b>Categoria:</b> <?= htmlspecialchars($postagem['categoria']) ?></p>
       <p><b>Descrição:</b> <?= htmlspecialchars($postagem['descricao']) ?></p>
       <p>ID: <?= $postagem['id_item'] ?></p>
-      <form action="" method="post">
+      <p>ID Usuário: <?= $id_usuario ?></p>
+      <form action="acaoBotao.php" method="post">
+        <input type="hidden" name="id_item" value="<?= $postagem['id_item'] ?>">
+        <input type="hidden" name="id_usuario" value="<?= $id_usuario ?>">
         <button type="submit"
-          name="id_item"
-          value="<?= $postagem['id_item'] ?>">
+          name="emprestimo">
           Solicitar Empréstimo
         </button>
       </form>

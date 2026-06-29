@@ -72,7 +72,9 @@ if (!isset($_SESSION['id_usuario'])) {
                         FROM emprestimos e
                         JOIN itens i ON e.id_item = i.id_item
                         JOIN usuarios u ON e.id_emprestado = u.id_usuario
-                        WHERE e.id_proprietario = ?";
+                        WHERE e.id_proprietario = ?
+                        AND e.status = 'emprestado'
+                        ORDER BY e.data_solicitacao DESC";
 
   $stmt = $conn->prepare($query_emprestados);
   $stmt->bind_param("i", $id_usuario);
@@ -94,7 +96,9 @@ if (!isset($_SESSION['id_usuario'])) {
                         FROM emprestimos e
                         JOIN itens i ON e.id_item = i.id_item
                         JOIN usuarios u ON e.id_proprietario = u.id_usuario
-                        WHERE e.id_emprestado = ?";
+                        WHERE e.id_emprestado = ?
+                        AND e.status = 'emprestado'
+                        ORDER BY e.data_solicitacao DESC";
 
   $stmt = $conn->prepare($query_emprestados);
   $stmt->bind_param("i", $id_usuario);
