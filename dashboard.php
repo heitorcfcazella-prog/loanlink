@@ -250,16 +250,11 @@ if (!isset($_SESSION['id_usuario'])) {
         <p>Data de solicitação: <?= htmlspecialchars($pendente['data_solicitacao']) ?></p>
 
         <form action="solicitacao.php" method="post">
-          <input type="hidden" name="id_emprestimo"
-            value="<?= $pendente['id_emprestimo'] ?>">
+          <input type="hidden" name="id_emprestimo" value="<?= $pendente['id_emprestimo'] ?>">
 
-          <button type="submit" name="acao" value="aprovar">
-            Aprovar
-          </button>
+          <button type="submit" name="acao" value="aprovar">Aprovar</button>
 
-          <button type="submit" name="acao" value="recusar">
-            Recusar
-          </button>
+          <button type="submit" name="acao" value="recusar">Recusar</button>
         </form>
         <hr>
       </div>

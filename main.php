@@ -64,7 +64,7 @@ if (!isset($_SESSION['id_usuario'])) {
       <p><b>Descrição:</b> <?= htmlspecialchars($postagem['descricao']) ?></p>
       <p>ID: <?= $postagem['id_item'] ?></p>
       <p>ID Usuário: <?= $id_usuario ?></p>
-      <form action="acaoBotao.php" method="post">
+      <form action="solicitacao.php" method="post">
         <input type="hidden" name="id_item" value="<?= $postagem['id_item'] ?>">
         <input type="hidden" name="id_usuario" value="<?= $id_usuario ?>">
         <button type="submit"
