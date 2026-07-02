@@ -193,6 +193,9 @@ if (!isset($_SESSION['id_usuario'])) {
   <a href="#pendentes">
     <p>Solicitações pendentes: <?= $pendentes ?></p>
   </a>
+  <a href="historico.php">
+    <p>Itens no histórico <?= $quantidade_historico ?></p>
+  </a>
 
   <details id="meus_itens">
     <summary class="titulo-detalhes">Meus Itens</summary>

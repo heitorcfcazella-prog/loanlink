@@ -13,6 +13,7 @@ if (isset($_SESSION['id_usuario']) && !empty($_SESSION['foto_perfil'])) {
   <a href="main.php">Área de trocas</a>
   <a href="dashboard.php">Área do Usuário</a>
   <a href="adicionarItens.php">Adicionar Itens</a>
+  <a href="historico.php">Histórico</a>
   <?= $imagem ?>
   <hr>
 </header>
