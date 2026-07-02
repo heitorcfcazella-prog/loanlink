@@ -47,18 +47,41 @@ if (isset($_POST['aprovar'])) {
   $stmt->execute();
   
   $query_atualiza_item_emitens = "UPDATE itens
-                          SET status = 'emprestado'
-                          WHERE id_item = ?";
+                                  SET status = 'emprestado'
+                                  WHERE id_item = ?";
 
   $stmt = $conn->prepare($query_atualiza_item_emitens);
   $stmt->bind_param("i", $id_item);
   $stmt->execute();
 
   $query_atualiza_item_empostagens = "UPDATE postagens
-                          SET ativo = 0
-                          WHERE id_item = ?";
+                                      SET ativo = 0
+                                      WHERE id_item = ?";
 
   $stmt = $conn->prepare($query_atualiza_item_empostagens);
+  $stmt->bind_param("i", $id_item);
+  $stmt->execute();
+
+  header("Location: dashboard.php");
+}
+
+if (isset($_POST['recusar'])) {
+  $id_item = $_POST['id_item'];
+  //UPDATE item = 'disponivel'/emprestimos = 'cancelado'
+
+  $query_atualiza_item_emitens = "UPDATE itens
+                                  SET status = 'disponivel'
+                                  WHERE id_item = ?";
+
+  $stmt = $conn->prepare($query_atualiza_item_emitens);
+  $stmt->bind_param("i", $id_item);
+  $stmt->execute();
+
+  $query_atualiza_emprestimo = "UPDATE emprestimos
+                                SET status = 'cancelado'
+                                WHERE id_item = ?";
+
+  $stmt = $conn->prepare($query_atualiza_emprestimo);
   $stmt->bind_param("i", $id_item);
   $stmt->execute();
 
