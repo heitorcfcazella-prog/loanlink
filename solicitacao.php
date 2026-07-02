@@ -27,6 +27,21 @@ if (isset($_POST['emprestimo'])) {
   header("Location: dashboard.php");
 }
 
+if (isset($_POST['aprovar'])) {
+  $id_emprestimo = $_POST['id_emprestimo'];
+  // data aprovacao, data prevista (7dias), status = 'emprestado'
+  $query_aprovado = "UPDATE emprestimos 
+                     SET data_aprovacao = NOW(), data_prevista_devolucao = DATE_ADD(CURDATE(), INTERVAL 7 DAY), status = 'emprestado'
+                     WHERE id_emprestimo = ?";
+  
+  $stmt = $conn->prepare($query_aprovado);
+  $stmt->bind_param("i", $id_emprestimo);
+  $stmt->execute();
+  $stmt->close();
+
+  header("Location: dashboard.php");
+}
+
 
 
 ?>
