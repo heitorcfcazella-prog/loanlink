@@ -93,8 +93,10 @@ if (!isset($_SESSION['id_usuario'])) {
   //query emprestados para mim
   $query_emprestados = "SELECT
                         i.nome AS item,
+                        i.id_item AS id_item,
                         u.nome AS emprestado_por,
-                        e.data_prevista_devolucao
+                        e.data_prevista_devolucao,
+                        e.id_emprestimo
                         FROM emprestimos e
                         JOIN itens i ON e.id_item = i.id_item
                         JOIN usuarios u ON e.id_proprietario = u.id_usuario
@@ -238,6 +240,11 @@ if (!isset($_SESSION['id_usuario'])) {
         <p>Emprestado por: <?= htmlspecialchars($emprestado['emprestado_por']) ?></p>
 
         <p>Data de devolução: <?= htmlspecialchars($emprestado['data_prevista_devolucao']) ?></p>
+        <form action="solicitacao.php" method="post">
+          <input type="hidden" name="id_item" value="<?= $emprestado['id_item'] ?>">
+          <input type="hidden" name="id_emprestimo" value="<?= $emprestado['id_emprestimo'] ?>">
+          <button type="submit" name="devolver">Devolver Item</button>
+        </form>
         <hr>
       </div>
     <?php } ?>

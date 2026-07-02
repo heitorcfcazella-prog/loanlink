@@ -87,7 +87,33 @@ if (isset($_POST['recusar'])) {
 
   header("Location: dashboard.php");
 }
+if (isset($_POST['devolver'])) {
+  /* emprestimo - id_emprestimo
+    data_devolucao = CURDATE()
+    status = devolvido
+    item - id_item
+    status = disponivel
+  */
+    $id_emprestimo = $_POST['id_emprestimo'];
+    $id_item = $_POST['id_item'];
 
+    $query_emprestimo = "UPDATE emprestimos
+                         SET data_devolucao = CURDATE(), status = 'devolvido'
+                         WHERE id_emprestimo = ?";
+    $stmt = $conn->prepare($query_emprestimo);
+    $stmt->bind_param("i", $id_emprestimo);
+    $stmt->execute();
+
+    $query_item = "UPDATE itens
+                   SET status = 'disponivel'
+                   WHERE id_item = ?";
+    $stmt = $conn->prepare($query_item);
+    $stmt->bind_param("i", $id_item);
+    $stmt->execute();
+
+    header("Location: dashboard.php");
+    
+}
 
 
 ?>
