@@ -204,6 +204,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
         <form action="acaoBotao.php" method="post">
           <input type="hidden" name="id_item" value="<?= $item['id_item'] ?>"> <!--valor invisivel para o 'id_item' ser acessado-->
+          <input type="hidden" name="status" value="<?= $item['status'] ?>">
           <button type="submit" name="postar">Postar Item</button>
           <button type="submit" name="editar">Editar Item</button>
           <button type="submit" name="deletar">Deletar Item</button>
