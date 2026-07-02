@@ -31,11 +31,15 @@ if (!isset($_SESSION['id_usuario'])) {
             (SELECT COUNT(*)
             FROM emprestimos
             WHERE id_proprietario = ?
-            AND status = 'pendente') AS pendentes
+            AND status = 'pendente') AS pendentes,
+
+            (SELECT COUNT(*)
+            FROM emprestimos
+            WHERE id_proprietario = ?) AS quantidade_historico
         ";
   //AS total_itens atribui um nome a esse resultado(tipo uma variavel)
   $stmt = $conn->prepare($query);
-  $stmt->bind_param("iiii", $id_usuario, $id_usuario, $id_usuario, $id_usuario);
+  $stmt->bind_param("iiiii", $id_usuario, $id_usuario, $id_usuario, $id_usuario, $id_usuario);
   $stmt->execute();
 
   $resultado = $stmt->get_result();
@@ -47,6 +51,7 @@ if (!isset($_SESSION['id_usuario'])) {
   $emprestados_por_mim = $dados['emprestados_por_mim'];
   $emprestados_para_mim = $dados['emprestados_para_mim'];
   $pendentes = $dados['pendentes'];
+  $quantidade_historico = $dados['quantidade_historico'];
 
 
   //retorna os itens
