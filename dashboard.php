@@ -216,7 +216,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
 
   <details id="emprestados_por_mim">
-    <summary class="titulo-detalhes">Emprestados por mim: </summary>
+    <summary class="titulo-detalhes">Emprestados por mim</summary>
     <?php foreach ($emprestados_por_mim_itens as $emprestimo) { ?>
       <div>
         <h3><?= htmlspecialchars($emprestimo['item']) ?></h3>
