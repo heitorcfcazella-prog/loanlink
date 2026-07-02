@@ -118,6 +118,7 @@ if (!isset($_SESSION['id_usuario'])) {
   $query_pendentes = "SELECT
                       e.id_emprestimo,
                       i.nome AS item,
+                      i.id_item AS id_item,
                       u.nome AS solicitante,
                       e.data_solicitacao,
                       e.data_prevista_devolucao,
@@ -253,6 +254,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
         <form action="solicitacao.php" method="post">
           <input type="hidden" name="id_emprestimo" value="<?= $pendente['id_emprestimo'] ?>">
+          <input type="hidden" name="id_item" value="<?= $pendente['id_item'] ?>">
 
           <button type="submit" name="aprovar">Aprovar</button>
 

@@ -22,13 +22,21 @@ if (isset($_POST['emprestimo'])) {
   $stmt = $conn->prepare($query_solicitacao);
   $stmt->bind_param("iii", $id_item, $id_proprietario, $id_usuario);
   $stmt->execute();
-  $stmt->close();
+
+  $query_atualiza_item = "UPDATE itens
+                          SET status = 'pendente'
+                          WHERE id_item = ?";
+
+  $stmt = $conn->prepare($query_atualiza_item);
+  $stmt->bind_param("i", $id_item);
+  $stmt->execute();
 
   header("Location: dashboard.php");
 }
 
 if (isset($_POST['aprovar'])) {
   $id_emprestimo = $_POST['id_emprestimo'];
+  $id_item = $_POST['id_item'];
   // data aprovacao, data prevista (7dias), status = 'emprestado'
   $query_aprovado = "UPDATE emprestimos 
                      SET data_aprovacao = NOW(), data_prevista_devolucao = DATE_ADD(CURDATE(), INTERVAL 7 DAY), status = 'emprestado'
@@ -37,7 +45,14 @@ if (isset($_POST['aprovar'])) {
   $stmt = $conn->prepare($query_aprovado);
   $stmt->bind_param("i", $id_emprestimo);
   $stmt->execute();
-  $stmt->close();
+  
+  $query_atualiza_item = "UPDATE itens
+                          SET status = 'emprestado'
+                          WHERE id_item = ?";
+
+  $stmt = $conn->prepare($query_atualiza_item);
+  $stmt->bind_param("i", $id_item);
+  $stmt->execute();
 
   header("Location: dashboard.php");
 }
