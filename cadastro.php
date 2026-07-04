@@ -1,5 +1,5 @@
 <?php
-include("db.php");
+include("./includes/db.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -93,7 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
   }
 }
-include("header.php");
+include("./includes/header.php");
 ?>
 
 <!DOCTYPE html>
@@ -131,5 +131,5 @@ include("header.php");
 
 </html>
 <?php
-include("footer.html");
+include("./includes/footer.html");
 ?>

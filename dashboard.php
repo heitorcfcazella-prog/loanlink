@@ -1,6 +1,6 @@
 <?php
-include("header.php");
-include("db.php");
+include("./includes/header.php");
+include("./includes/db.php");
 
 if (!isset($_SESSION['id_usuario'])) {
   header("Location: login.php");
@@ -289,5 +289,5 @@ if (!isset($_SESSION['id_usuario'])) {
 
 </html>
 <?php
-include("footer.html");
+include("./includes/footer.html");
 ?>

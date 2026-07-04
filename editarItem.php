@@ -1,6 +1,6 @@
 <?php
-include("db.php");
-include("header.php");
+include("./includes/db.php");
+include("./includes/header.php");
 
 $id_item = $_GET['id_item'];
 
@@ -82,5 +82,5 @@ if (isset($_POST['atualizar'])) {
 
 </html>
 <?php 
-include('footer.html');
+include("./includes/footer.html");
 ?>

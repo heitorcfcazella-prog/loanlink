@@ -1,5 +1,5 @@
 <?php 
-include("db.php");
+include("./includes/db.php");
 
 if (isset($_POST['emprestimo'])) {
   $id_item = $_POST['id_item'];
