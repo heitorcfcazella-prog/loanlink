@@ -58,7 +58,7 @@ if (!isset($_SESSION['id_usuario'])) {
     <div>
 
       <h2><?= htmlspecialchars($postagem['nome_item']) ?></h2>
-      <p><b>Dono do item: </b><?= htmlspecialchars($postagem['nome_dono']) ?></p>
+      <p><b>Dono do item: </b><a href="perfil.php?id_usuario=<?= htmlspecialchars($postagem['id_dono']) ?>"><?= htmlspecialchars($postagem['nome_dono']) ?></a></p>
       <img src="<?= htmlspecialchars($postagem['foto_item']) ?>" alt="Foto Não Disponível" style="height: 200px;">
       <p><b>Categoria:</b> <?= htmlspecialchars($postagem['categoria']) ?></p>
       <p><b>Descrição:</b> <?= htmlspecialchars($postagem['descricao']) ?></p>
