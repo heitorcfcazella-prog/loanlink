@@ -1,9 +1,9 @@
-<?php 
-  $bd_server = "localhost";
-  $bd_usuario = "root";
-  $bd_senha = "";
-  $bd_nome = "loanlinkdb";
-  $conn = "";
+<?php
+
+$bd_server = "SEU_HOST";
+$bd_usuario = "SEU_USUARIO";
+$bd_senha = "SUA_SENHA";
+$bd_nome = "SEU_BANCO";
 
   try {
     
@@ -14,4 +14,5 @@
   } catch(mysqli_sql_exception) {
     echo "Erro de conexão <br> ";
   }
+
 ?>
