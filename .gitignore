@@ -1,4 +1,4 @@
-./includes/db.php
+includes/db.php
 uploads/
 .DS_Store
 Thumbs.db
