@@ -49,9 +49,19 @@ if (!isset($_SESSION['id_usuario'])) {
       $quantidade_emprestimos = $dados['quantidade_emprestimos'];
       $quantidade_itens = $dados['quantidade_itens'];
 
-      //query_itens = nome, foto_item, categoria, descricao, botão solicitação
-      $query_itens = "SELECT id_item, nome, categoria, descricao, foto_item FROM itens
-                    WHERE id_proprietario = ?";
+      $query_itens = "SELECT 
+                      i.id_item AS itens_id, 
+                      i.nome, 
+                      i.categoria, 
+                      i.descricao, 
+                      i.foto_item,
+                      i.id_proprietario,
+                      p.id_postagem,
+                      p.id_item
+                      FROM itens i
+                      JOIN postagens p ON i.id_item = p.id_item
+                      WHERE id_proprietario = ? 
+                      AND p.ativo = 1";
 
       $stmt = $conn->prepare($query_itens);
       $stmt->bind_param("i", $id_perfil);
@@ -120,7 +130,7 @@ if (!isset($_SESSION['id_usuario'])) {
         <p><b>Categoria: </b><?= htmlspecialchars($item['categoria']) ?></p>
         <p><?= htmlspecialchars($item['descricao']) ?></p>
         <form action="solicitacao.php" method="post">
-          <input type="hidden" name="id_item" value="<?= $item['id_item'] ?>">
+          <input type="hidden" name="id_item" value="<?= $item['itens_id'] ?>">
           <input type="hidden" name="id_usuario" value="<?= $id_usuario ?>">
           <button type="submit"
             name="emprestimo">
