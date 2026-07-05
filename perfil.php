@@ -12,6 +12,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
   if (($id_perfil === null || $id_perfil === false) || ($id_perfil === $id_usuario)) {
     header("Location: dashboard.php");
+    exit;
   } else {
     //query_perfil = foto_perfil, nome, email
     $query_perfil = "SELECT foto_perfil, nome, email FROM usuarios
@@ -27,6 +28,7 @@ if (!isset($_SESSION['id_usuario'])) {
     //se perfil não existir
     if (!$perfil) {
       header("Location: dashboard.php");
+      exit;
     } else {
 
       //query_quantidades = itens e emprestimos

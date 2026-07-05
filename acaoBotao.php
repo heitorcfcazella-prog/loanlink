@@ -5,6 +5,7 @@ if (isset($_POST['postar'])) {
   $status = $_POST['status'];
   if ($status == "emprestado") {
     header("Location: dashboard.php");
+    exit;
   } else {
     $id_item = $_POST['id_item'];
 
@@ -17,12 +18,14 @@ if (isset($_POST['postar'])) {
     $stmt->close();
 
     header("Location: dashboard.php");
+    exit;
   }
 }
 if (isset($_POST['deletar'])) {
   $status = $_POST['status'];
   if ($status == "emprestado") {
     header("Location: dashboard.php");
+    exit;
   } else {
     $id_item = $_POST['id_item'];
 
@@ -35,14 +38,17 @@ if (isset($_POST['deletar'])) {
     $stmt->close();
 
     header("Location: dashboard.php");
+    exit;
   }
 }
 if (isset($_POST['editar'])) {
   $status = $_POST['status'];
   if ($status == "emprestado") {
     header("Location: dashboard.php");
+    exit;
   } else {
     $id_item = $_POST['id_item'];
     header("Location: editarItem.php?id_item=" . $id_item);
+    exit;
   }
 }

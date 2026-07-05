@@ -152,6 +152,7 @@ if (!isset($_SESSION['id_usuario'])) {
   if (isset($_POST["logout"])) {
     session_destroy(); // deslogar
     header("Location: login.php");
+    exit;
   }
 }
 

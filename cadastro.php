@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
           if ($stmt->execute()) {
             header("Location: login.php");
-            exit();
+            exit;
           } else {
             $erro .= "<p class='alerta'>Erro no cadastro: {$stmt->error}</p>";
           }

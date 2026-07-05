@@ -32,6 +32,7 @@ if (isset($_POST['emprestimo'])) {
   $stmt->execute();
 
   header("Location: dashboard.php");
+  exit;
 }
 
 if (isset($_POST['aprovar'])) {
@@ -73,6 +74,7 @@ if (isset($_POST['aprovar'])) {
   $stmt->execute();
 
   header("Location: dashboard.php");
+  exit;
 }
 
 if (isset($_POST['recusar'])) {
@@ -96,6 +98,7 @@ if (isset($_POST['recusar'])) {
   $stmt->execute();
 
   header("Location: dashboard.php");
+  exit;
 }
 if (isset($_POST['devolver'])) {
   /* emprestimo - id_emprestimo
@@ -122,7 +125,7 @@ if (isset($_POST['devolver'])) {
     $stmt->execute();
 
     header("Location: dashboard.php");
-    
+    exit;
 }
 
 

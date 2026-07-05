@@ -66,7 +66,7 @@ if (!isset($_SESSION['id_usuario'])) {
 
           if ($stmt->execute()) {
             header("Location: dashboard.php");
-            exit();
+            exit;
           } else {
             $erro .= "<p class='alerta'>Erro no cadastro: {$stmt->error}</p>";
           }
