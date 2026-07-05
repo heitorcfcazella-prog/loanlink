@@ -1,17 +1,21 @@
 <?php
 include("./includes/db.php");
 include("./includes/header.php");
-
+$id_usuario = $_SESSION['id_usuario'];
 $id_item = $_GET['id_item'];
 
 //pegar nome e descricao
-$stmt = $conn->prepare("SELECT id_item, nome, descricao FROM itens WHERE id_item = ?");
-$stmt->bind_param("i", $id_item);
+$stmt = $conn->prepare("SELECT id_item, nome, descricao FROM itens WHERE id_item = ? AND id_proprietario = ?");
+$stmt->bind_param("ii", $id_item, $id_usuario);
 $stmt->execute();
 
 $result = $stmt->get_result();
 $item = $result->fetch_assoc();
 
+if (!$item) {
+    header("Location: dashboard.php");
+    exit;
+}
 //query para as categorias
 $categorias_stmt = $conn->prepare("
                       SELECT COLUMN_TYPE
