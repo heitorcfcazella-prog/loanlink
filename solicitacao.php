@@ -62,6 +62,16 @@ if (isset($_POST['aprovar'])) {
   $stmt->bind_param("i", $id_item);
   $stmt->execute();
 
+  $query_cancela_pedidos = "UPDATE emprestimos
+                            SET status = 'cancelado'
+                            WHERE id_item = ?
+                            AND status = 'pendente'
+                            AND id_emprestimo <> ?;";
+
+  $stmt = $conn->prepare($query_cancela_pedidos);
+  $stmt->bind_param("ii", $id_item, $id_emprestimo);
+  $stmt->execute();
+
   header("Location: dashboard.php");
 }
 
