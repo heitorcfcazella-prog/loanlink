@@ -66,6 +66,7 @@ if (isset($_POST['atualizar'])) {
 </head>
 
 <body>
+  <h1>Editar Item</h1>
   <form action="editarItem.php?id_item=<?= $item['id_item'] ?>" method="post">
     <input type="hidden" name="id_item" value="<?= $item['id_item'] ?>">
     <label>Nome: </label>
