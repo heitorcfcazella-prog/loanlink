@@ -62,8 +62,6 @@ if (!isset($_SESSION['id_usuario'])) {
       <img src="<?= htmlspecialchars($postagem['foto_item']) ?>" alt="Foto Não Disponível" style="height: 200px;">
       <p><b>Categoria:</b> <?= htmlspecialchars($postagem['categoria']) ?></p>
       <p><b>Descrição:</b> <?= htmlspecialchars($postagem['descricao']) ?></p>
-      <p>ID: <?= $postagem['id_item'] ?></p>
-      <p>ID Usuário: <?= $id_usuario ?></p>
       <form action="solicitacao.php" method="post">
         <input type="hidden" name="id_item" value="<?= $postagem['id_item'] ?>">
         <input type="hidden" name="id_usuario" value="<?= $id_usuario ?>">

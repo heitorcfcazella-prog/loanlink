@@ -181,7 +181,6 @@ if (!isset($_SESSION['id_usuario'])) {
 
 <body>
   <h1>Olá <?= $nome ?></h1>
-  <p>Seu id é <?= $id_usuario ?></p>
   <a href="#meus_itens">
     <p>Itens cadastrados: <?= $total_itens ?> </p>
   </a>
