@@ -52,14 +52,14 @@ Este projeto foi desenvolvido com o objetivo de praticar o desenvolvimento Full 
 ### Login/Cadastro: 
 
 Login: 
-![Imagem Login](assets/login.png)
+![Imagem Login](assets/login.PNG)
 
 Cadastro: 
-![Imagem Cadastro](assets/cadastro.png)
+![Imagem Cadastro](assets/cadastro.PNG)
 
 ### Dashboard: 
 
-![Imagem Dashboard](assets/dashboard.png)
+![Imagem Dashboard](assets/dashboard.PNG)
 
 ### Página Principal: 
 
@@ -71,7 +71,7 @@ Cadastro:
 
 ### Editar Itens: 
 
-![Imagem Editar](assets/editar.png)
+![Imagem Editar](assets/editar.PNG)
 
 ## Como executar o projeto
 
